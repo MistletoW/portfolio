@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/index";       // confirm casing
 import NotFound from "./pages/NotFound"; // confirm casing
+import Projects from "./components/Projects";
 
 const queryClient = new QueryClient();
 
@@ -26,5 +27,6 @@ const App = () => (
 );
 
 export default App;
+
 
 
