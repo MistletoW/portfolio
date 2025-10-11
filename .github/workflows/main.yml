@@ -1,30 +1,82 @@
-# .github/workflows/pages.yml
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
+env:
+  # Will be "/" for user/organization sites (username.github.io)
+  # and "/<repo>/" for project sites (username.github.io/<repo>)
+  # We detect this at build time.
+  VITE_BASE_PATH: ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      # tell Pages where the static site lives (dist or build)
-      - uses: actions/upload-pages-artifact@v3
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm i
+          fi
+
+      # Detect whether this is a user/organization Pages site or a project site.
+      # If repo is "<username>.github.io" we use base "/".
+      # Otherwise we use "/<repo>/" as required by GitHub Pages.
+      - name: Determine Vite base path
+        id: base
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          OWNER_NAME="${GITHUB_REPOSITORY%/*}"
+          LOWER_REPO="$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')"
+          LOWER_OWNER="$(echo "$OWNER_NAME" | tr '[:upper:]' '[:lower:]')"
+
+          if [ "$LOWER_REPO" = "${LOWER_OWNER}.github.io" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/${REPO_NAME}/" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Vite base will be: ${{ steps.base.outputs.base }}"
+
+      - name: Build (Vite)
+        run: |
+          # Build with a dynamic base so assets resolve on GitHub Pages
+          npm run build -- --base="${{ steps.base.outputs.base }}"
+
+      # SPA fallback so client-side routes work (optional but recommended)
+      - name: Add SPA 404 fallback
+        run: |
+          if [ -f dist/index.html ]; then
+            cp dist/index.html dist/404.html
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -32,5 +84,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
