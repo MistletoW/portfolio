@@ -14,6 +14,7 @@ Simply visit the [Lovable Project](https://lovable.dev/projects/0feef883-2a4e-4d
 
 Changes made via Lovable will be committed automatically to this repo.
 
+
 **Use your preferred IDE**
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
@@ -69,5 +70,6 @@ Simply open [Lovable](https://lovable.dev/projects/0feef883-2a4e-4d08-b6aa-a6dc5
 Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
