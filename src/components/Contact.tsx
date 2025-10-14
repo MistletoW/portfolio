@@ -64,17 +64,6 @@ const Contact = () => {
                 
               </div>
             </div>
-
-            <div className="bg-secondary border border-border p-4 mt-6">
-              <div className="font-mono text-sm space-y-2">
-                <div className="text-accent"># Certifications & Training</div>
-                <div className="pl-4 text-muted-foreground space-y-1">
-                  <div>• COMPTIA SEC+ (Scheduled November 2025)</div>
-                  <div>• TryHackMe Cyber Security 101</div>
-                  <div>• TryHackMe Pre Security</div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="mt-8 text-center font-mono text-sm text-muted-foreground">
