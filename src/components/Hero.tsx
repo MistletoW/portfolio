@@ -60,13 +60,13 @@ const Hero = () => {
 
               {/* Tagline */}
               <div className="text-muted-foreground text-base md:text-lg mt-6 leading-relaxed animate-fade-in">
-                Defending networks. Breaking systems. Engineering security.<br />
-                From <span className="text-accent">detection</span> to <span className="text-accent">exploitation</span>, building resilience through offense and analysis.
+                From <span className="text-accent">detection</span> to <span className="text-accent">design</span>.<br />
+                Evidence-driven security across <span className="text-accent">blue</span>, <span className="text-accent">red</span>, and <span className="text-accent">build</span>.
               </div>
 
               {/* Optional call-to-action line */}
               <div className="text-sm text-muted-foreground italic mt-4 animate-fade-in-slow">
-                # Threat-driven. Data-informed. Mission-focused.
+                # Threat-driven. Lab-proven. Mission-focused.
               </div>
             </div>
             

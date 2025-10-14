@@ -20,7 +20,9 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Education added first
   const navItems = [
+    { label: "Education", id: "education" },
     { label: "Skills", id: "skills" },
     { label: "Projects", id: "projects" },
     { label: "Contact", id: "contact" },
@@ -40,7 +42,7 @@ const Navigation = () => {
           >
             <Shield className="w-6 h-6 text-primary" />
             <span className="text-primary">&gt;</span>
-            <span>RedTeam</span>
+            <span>Dylan.sec</span>
           </button>
 
           {/* Desktop Navigation */}
