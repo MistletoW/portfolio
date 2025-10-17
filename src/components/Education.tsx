@@ -27,6 +27,7 @@ const TRAINING = {
     notes: [
       "Hands-on rooms for SOC fundamentals, DFIR, malware analysis, and threat hunting",
       "Regular progress in blue-team and incident response paths",
+      "Ranked top 3% among ~2,000,000+ users on TryHackMe",
     ],
   },
   // hackthebox: {

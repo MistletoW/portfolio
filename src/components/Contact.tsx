@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, FileText } from "lucide-react";
+import { Mail, Github, Linkedin, Phone, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
@@ -22,7 +22,8 @@ const Contact = () => {
               <div className="text-accent">$ cat contact.txt</div>
               <div className="pl-4 space-y-1 text-sm">
                 <div><span className="text-primary">email:</span> haasedylan@gmail.com</div>
-                <div><span className="text-primary">timezone:</span> UTC-7 (MST)</div>
+                <div><span className="text-primary">phone:</span> (303)960-1569</div>
+                <div><span className="text-primary">location:</span> Lakewood, CO</div>
                 <div><span className="text-primary">availability:</span> Contract & Full-time</div>
               </div>
             </div>
@@ -61,7 +62,22 @@ const Contact = () => {
                     <span className="hidden md:inline">LinkedIn</span>
                   </a>
                 </Button>
-                
+
+                <Button
+                  variant="outline"
+                  className="font-mono border-border hover:border-primary hover:text-primary"
+                  asChild
+                >
+                  <a
+                    href="https://tryhackme.com/p/G1ldedWarden"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Terminal className="w-4 h-4" />
+                    <span className="hidden md:inline">TryHackMe</span>
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
